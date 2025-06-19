@@ -20,7 +20,6 @@ function errorMessage(message){
 function dimensionInput(){
   let dimensionTentative = Number(inputReference.value);
   inputReference.value = '';
-  console.log(dimensionTentative);
   if (!(dimensionTentative) || dimensionTentative === 0){
     errorMessage('Invalid number: Please enter a valid number.');
   }
@@ -105,22 +104,7 @@ function gridCreation(){
 
 
 function tracerResponse(){
-  response = 
-  `
-  <div class = "modal-background">
-    <div class = "modal-content">
-      <p class = "modal-content-header">Disappearance Option</p>
-      <p>After some set amount of time, would you like your path to disappear?</p>
-      <div>
-        <button class = "modal-yes">Yes</button>
-        <button class = "modal-no">No</button>
-        <button class = "modal-cancel">Cancel</button>
-      </div>
-    </div>
-  </div>
-  `
-  ;
-
+  // Used chatGPT (i had a similar answer -> but once again, see comment below which took me 2-5 hours to fix)
   const modal = document.createElement('div');
   modal.className = 'modal-background';
   modal.innerHTML = `
@@ -141,15 +125,15 @@ function tracerResponse(){
   const modalYesRef = document.querySelector('.modal-yes');
   modalYesRef.addEventListener('click', () => {
     modalBackgroundRef.remove();
-    gridCreation()
     tracerResponseAnswer = true;
+    gridCreation();
   });
 
   const modalNoRef = document.querySelector('.modal-no');
   modalNoRef.addEventListener('click', () => {
     modalBackgroundRef.remove();
-    gridCreation()
     tracerResponseAnswer = false;
+    gridCreation();
   });
 
   const modalCancelRef = document.querySelector('.modal-cancel');
