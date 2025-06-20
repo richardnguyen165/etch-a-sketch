@@ -175,7 +175,8 @@ function gridCreation(){
           item.style['background-color'] = 'white';
           item.addEventListener('mouseover', () => {
             item.style['background-color'] = blockColor;
-            item.style['opacity'] = `0`;
+            item.style['opacity'] = 0;
+            item.style['opacity'] = `${Number(compStyle.getPropertyValue('opacity')) + 0.1}`;
           });
         }, 2000);
       });
