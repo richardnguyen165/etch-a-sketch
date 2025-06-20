@@ -160,7 +160,6 @@ function gridCreation(){
     item.addEventListener('mouseover', () => {
       item.style['background-color'] = blockColor;
       // https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle -> how to get a CSS value
-      console.log(compStyle.getPropertyValue('opacity'));
       // you need to parse opacity to a number
       item.style['opacity'] = `${Number(compStyle.getPropertyValue('opacity')) + 0.1}`;
     });
@@ -323,7 +322,6 @@ function RGBtoHex(firstRGBRef, secondRGBRef, thirdRGBRef, colorInputSelectorRef,
   let firstNumber = Number(firstRGBRef.value);
   let secondNumber = Number(secondRGBRef.value);
   let thirdNumber = Number(thirdRGBRef.value);
-  console.log(firstNumber, secondNumber, thirdNumber);
   if ((firstNumber === NaN || secondNumber === NaN) || thirdNumber === NaN){
     alert('Invalid RGB: One of your numbers is non-numeric.');
     return;
@@ -348,7 +346,6 @@ function hexToRGB(hexStringer, colorInputSelectorRef, firstRGBRef, secondRGBRef,
     return;
   }
   const numberTest = parseInt("0x" + hexValue);
-  console.log(numberTest);
   if (numberTest === NaN){
     alert('Invalid hex: Please find a valid hex.');
     return;
