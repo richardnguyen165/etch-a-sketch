@@ -46,10 +46,22 @@ function randomColors(){
 function resetGrid(){
   let allRows = document.querySelectorAll('.etch-a-sketch-block');
   if (allRows.length > 0){
-    allRows.forEach(item => {
-      item.style['background-color'] = `#ffffff`;
+    if (randomClicked){
+      randomButton.classList.toggle('random-color-active');
+      randomClicked = !(randomClicked);
     }
-  )
+    blockColor = '#000000';
+    allRows.forEach(item => {
+        item.style['background-color'] = `#ffffff`;
+        item.style['opacity'] = 0;
+        item.addEventListener('mouseover', () => {
+        item.style['background-color'] = blockColor;
+          // https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle -> how to get a CSS value
+          // you need to parse opacity to a number
+          item.style['opacity'] = `${Number(compStyle.getPropertyValue('opacity')) + 0.1}`;
+        });
+      }
+    )
   }
   else{
     alert('No grid available. Pleasae create grid.');
