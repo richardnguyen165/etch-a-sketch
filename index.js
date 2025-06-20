@@ -115,7 +115,9 @@ function gridCreation(){
       for (let j = 0; j < dimension; j++){
         columnHTML += 
         `
-        <div class = "etch-a-sketch-block">
+        <div class = "etch-a-sketch-block-outer">
+          <div class = "etch-a-sketch-block">
+          </div>
         </div>
         `
       }
@@ -137,21 +139,30 @@ function gridCreation(){
     item.style['grid-gap'] = '0px';
   })
 
+  const outerBlockBorderReference = document.querySelectorAll('.etch-a-sketch-block-outer');
+  outerBlockBorderReference.forEach(item => {
+    // use some overflow but eventually used chatgpt -> the outer continaer is not effected by the opacity of the inner container
+    item.style['border'] = '1px solid lightgrey';
+  });
+
   const blockReference = document.querySelectorAll('.etch-a-sketch-block');
   blockReference.forEach(item => {
     // so that the outercontainer actually contains the the rows (before, due to the border, it would overflow)
     item.style['box-sizing'] = 'border-box';
     item.style['width'] = `${900 / dimension}px`;
     item.style['height'] = `${900 / dimension}px`;;
-    item.style['border'] = 'solid';
-    item.style['border-color'] = 'lightgrey';
-    item.style['border-width'] = '1px';
     item.style['margin'] = '0px';
+    item.style['opacity'] = '0';
+    const compStyle = window.getComputedStyle(item);
 
     let timer;
 
     item.addEventListener('mouseover', () => {
       item.style['background-color'] = blockColor;
+      // https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle -> how to get a CSS value
+      console.log(compStyle.getPropertyValue('opacity'));
+      // you need to parse opacity to a number
+      item.style['opacity'] = `${Number(compStyle.getPropertyValue('opacity')) + 0.1}`;
     });
 
     if (tracerResponseAnswer){
@@ -163,6 +174,10 @@ function gridCreation(){
         // waits 2 seconds before fading away
         timer = setTimeout(() => {
           item.style['background-color'] = 'white';
+          item.addEventListener('mouseover', () => {
+            item.style['background-color'] = blockColor;
+            item.style['opacity'] = `0`;
+          });
         }, 2000);
       });
     }
@@ -229,6 +244,11 @@ function colorModal(){
             <li>
               Inputting the buttons on the right does not cause the save to be automatic.
               <br> Only pressing done does.
+            </li>
+            <li>
+              Once you have chosen a color, click the button on the right (whichever one maps to what you are editing).
+              <br>
+              Press Done.
             </li>
             <li>
               To discard changes, press the Cancel button.
