@@ -24,6 +24,7 @@ body{
 .etch-a-sketch-inner-container{
   display: grid;
 }
+/* Modal selectors*/
 
 .modal-background{
   position: fixed;
@@ -43,7 +44,6 @@ body{
   flex-direction: column;
   background-color: white;
   padding: 20px;
-
   border-radius: 10px;
 }
 
@@ -55,7 +55,7 @@ body{
 }
 
 
-.modal-yes, .modal-no, .modal-cancel{
+.modal-yes, .modal-no, .modal-cancel, .modal-done, .modal-color-cancel, .modal-color-done, .modal-color-hex, .modal-color-slider, .modal-color-rgb, .reset-color, .choose-a-color, .enter-button, .reset-grid{
   border-radius: 10px;
   background-color: white;
   border: solid;
@@ -63,7 +63,7 @@ body{
   color: lightskyblue;
 
   border-width: 1px;
-  width: 100px;
+  width: 125px;
   padding: 10px;
   text-align: center;
 
@@ -72,8 +72,44 @@ body{
   transition: color 0.15s, background-color 0.15s, border 0.15s;
 }
 
-.modal-yes:hover, .modal-no:hover, .modal-cancel:hover{
+.modal-yes:hover, .modal-no:hover, .modal-cancel:hover, .modal-done:hover, .modal-color-cancel:hover, .modal-color-done:hover, .modal-color-hex:hover, .modal-color-slider:hover, .modal-color-rgb:hover, .reset-color:hover, .choose-a-color:hover, .enter-button:hover, .reset-grid:hover{
   color: white;
   background-color: lightskyblue;
 }
 
+.modal-color-options{
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+}
+
+.modal-input-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.random-color{
+  border-radius: 10px;
+  border: none;
+  background-color: red;
+  color: white;
+
+  border-width: 1px;
+  width: 125px;
+  padding: 10px;
+  text-align: center;
+
+  cursor: pointer;
+
+  transition: color 0.15s, background-color 0.15s, border 0.15s;
+}
+
+.random-color:hover{
+  background-color: lightpink;
+}
+
+.random-color-active{
+  background-color: green;
+  color: white;
+}
