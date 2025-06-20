@@ -380,4 +380,4 @@ function changeHoverColor(hexColor){
   });
   const colorModal = document.querySelector('.modal-background');
   colorModal.remove();
-}
+} 
